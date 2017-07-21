@@ -1,1 +1,19 @@
-<h1> Pass The Booking </h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pass The Booking</title>
+  </head>
+  <body>
+    Pass The Booking
+
+    <form action="{% url 'ptb:property_index' %}" method="post"> {% csrf_token %}
+      <input type="submit" value="View All Properties" />
+    </form>
+    <form action="{% url 'ptb:client_index' %}" method="post"> {% csrf_token %}
+      <input type="submit" value="View All Clients" />
+    </form>
+
+
+  </body>
+</html>

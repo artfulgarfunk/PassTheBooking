@@ -4,20 +4,37 @@ from ptb.models import Property
 from ptb.models import Booking
 
 
+# UNIT TESTS
 class ptbViewsTestCase(TestCase):
+    fixtures = ['dummy_data.json']
+
     def test_index(self):
         response = self.client.get('/ptb/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'ptb/home.html')
         self.assertContains(response, '<h1> Pass The Booking </h1>')
 
-    def test_clients(self):
+    def test_clients_list(self):
         response = self.client.get('/ptb/clients/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'ptb/clients.html')
-        self.assertContains(response, '<h1> Clients </h1>')
+        self.assertContains(response, 'Clients')
+        self.assertContains(response, 'John')
+        self.assertContains(response, 'Lennon')
+        self.assertContains(response, 'john@email.com')
+        self.assertContains(response, 'View Properties')
+        self.assertContains(response, 'Edit Info')
 
 
+    def test_clients_properties(self):
+        response = self.client.get('/ptb/clients/3/properties')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/client_properties.html')
+        self.assertContains(response, "Properties of")
+        self.assertContains(response, "Address:")
+
+
+# Model Tests
 class ptbClientModelTestCase(TestCase):
 
     def create_client(self, first_name="jack", last_name="henderson", email="jack@email.com"):

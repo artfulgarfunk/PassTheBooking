@@ -40,7 +40,31 @@
     "pk":1,
     "fields": {
       "owner":1,
-      "address":"barnaby st"
+      "address":"odyseuss st"
+    }
+  },
+  {
+    "model": "ptb.property",
+    "pk":2,
+    "fields": {
+      "owner":1,
+      "address":"sphinx st"
+    }
+  },
+  {
+    "model": "ptb.property",
+    "pk":3,
+    "fields": {
+      "owner":2,
+      "address":"homer st"
+    }
+  },
+  {
+    "model": "ptb.property",
+    "pk":4,
+    "fields": {
+      "owner":2,
+      "address":"iliad st"
     }
   }
 

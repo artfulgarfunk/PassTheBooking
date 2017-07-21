@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All Properties</title>
+  </head>
+  <body>
+    <h1> All Properties </h1>
+      {% if not properties %}
+      <p> There are no properties to display </p>
+      {% else %}
+      {% for property in properties %}
+      <div>
+        <p> Address: {{ property.address }} </p>
+        <p> Client: {{ property.owner }} </p>
+        <form action="{% url 'ptb:property_info' property.id %}" method="post"> {% csrf_token %}
+          <input type="submit" value="View Property" />
+        </form>
+
+      </div>
+      {% endfor %}
+      {%endif %}
+  </body>
+</html>

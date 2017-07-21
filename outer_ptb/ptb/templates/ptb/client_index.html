@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clients</title>
+  </head>
+  <body>
+    <h1> Clients <h1>
+
+    {% for client in clients %}
+    {{ client.id }}:
+    {{ client.first_name }}
+    {{ client.last_name }}
+    {{ client.email }} <br> <br>
+      <form action="{% url 'ptb:client_info' client.id %}" method="post"> {% csrf_token %}
+        <input type="submit" value="Edit Info" />
+      </form>
+      <form action="{% url 'ptb:properties' client.id %}" method="post"> {% csrf_token %}
+        <input type="submit" value="View Properties" />
+      </form>
+    {% endfor %}
+
+
+  </body>
+</html>

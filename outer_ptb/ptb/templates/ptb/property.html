@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Property</title>
+  </head>
+  <body>
+    Property
+    {{ property }}
+    <form action="{% url 'ptb:client_info' property.owner.id %}" method="post"> {% csrf_token %}
+      <input type="submit" value="View Client" />
+    </form>
+  </body>
+</html>
