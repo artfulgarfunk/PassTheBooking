@@ -1,17 +1,11 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.utils.translation import gettext as _
 
-# Create your models here.
 class Client(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
-    # add in phone number
 
-    #  what is the point of this method? why in tutorial
     def __str__(self):
         return self.first_name
 

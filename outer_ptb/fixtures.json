@@ -1,0 +1,47 @@
+[
+  {
+    "model": "ptb.client",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Lennon",
+      "email": "john@email.com"
+    }
+  },
+  {
+    "model": "ptb.client",
+    "pk": 2,
+    "fields": {
+      "first_name": "Paul",
+      "last_name": "McCartney",
+      "email": "paul@email.com"
+    }
+  },
+  {
+    "model": "ptb.client",
+    "pk": 3,
+    "fields": {
+      "first_name": "George",
+      "last_name": "Harrison",
+      "email": "george@email.com"
+    }
+  },
+  {
+    "model": "ptb.client",
+    "pk": 4,
+    "fields": {
+      "first_name": "Ringo",
+      "last_name": "Starr",
+      "email": "paul@email.com"
+    }
+  },
+  {
+    "model": "ptb.property",
+    "pk":1,
+    "fields": {
+      "owner":1,
+      "address":"barnaby st"
+    }
+  }
+
+]
