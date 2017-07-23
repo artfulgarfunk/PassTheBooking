@@ -58,8 +58,8 @@ Data:
 - Install [Django](https://docs.djangoproject.com/en/1.11/topics/install/)
 - Clone this repo
 - Change directory to outer_ptb
-- To make db migrations run `python manage.py makemigrations ptb`
-- To make db migrations run `python manage.py migrate ptb`
-- To load data run `python manage.py loaddata data.json`
+- For db migrations run `python manage.py makemigrations ptb`
+- To migrate run `python manage.py migrate ptb`
+- For test data run `python manage.py loaddata data.json`
 - To run server run `python manage.py runserver`
-- To run test suits run `python manage.py test`
+- To run test suite run `python manage.py test`
