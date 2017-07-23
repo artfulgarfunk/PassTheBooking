@@ -3,7 +3,7 @@ from ptb.models import Client, Property, Booking
 from ptb.forms import ClientForm, PropertyForm, BookingForm
 
 # TEMPLATE UNIT TESTS
-class ptbTemplateFeatureTests(TestCase):
+class ptbTemplateFeatureTestCase(TestCase):
 
     def create_client(self, first_name="jack", last_name="henderson", email="jack@email.com"):
         return Client.objects.create(first_name = first_name, last_name = last_name, email = email)

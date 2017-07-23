@@ -1,13 +1,6 @@
 from django.shortcuts import render, redirect
-# FORMS
-from .forms import ClientForm
-from .forms import PropertyForm
-from .forms import BookingForm
-
-# MODELS
-from .models import Client
-from .models import Property
-from .models import Booking
+from .forms import ClientForm, PropertyForm, BookingForm
+from .models import Client, Property, Booking
 
 def home(request):
     return render(request, 'ptb/home.html', {} )
