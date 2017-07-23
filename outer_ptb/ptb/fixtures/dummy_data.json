@@ -40,15 +40,21 @@
     "pk":1,
     "fields": {
       "owner":1,
-      "address":"odyseuss st"
+      "address":"odyseuss st",
+      "pet_friendly":true,
+      "bathrooms":2,
+      "bedrooms":3
     }
   },
   {
     "model": "ptb.property",
     "pk":2,
     "fields": {
-      "owner":1,
-      "address":"sphinx st"
+      "owner":2,
+      "address":"odyseuss st",
+      "pet_friendly":true,
+      "bathrooms":2,
+      "bedrooms":3
     }
   },
   {
@@ -56,15 +62,46 @@
     "pk":3,
     "fields": {
       "owner":2,
-      "address":"homer st"
+      "address":"odyseuss st",
+      "pet_friendly":true,
+      "bathrooms":2,
+      "bedrooms":3
     }
   },
   {
     "model": "ptb.property",
     "pk":4,
     "fields": {
-      "owner":2,
-      "address":"iliad st"
+      "owner":3,
+      "address":"odyseuss st",
+      "pet_friendly":true,
+      "bathrooms":2,
+      "bedrooms":3
+    }
+  },
+
+  {
+    "model": "ptb.booking",
+    "pk":1,
+    "fields": {
+      "prop":1,
+      "first_name":"Peter",
+      "last_name":"Griffin",
+      "email": "peter@email.com",
+      "date_from": "2014-12-08T15:43:00",
+      "date_until": "2014-12-08T15:43:00"
+    }
+  },
+  {
+    "model": "ptb.booking",
+    "pk":2,
+    "fields": {
+      "prop":1,
+      "first_name":"Lois",
+      "last_name":"Lane",
+      "email": "lois@email.com",
+      "date_from": "2016-12-08T15:43:00",
+      "date_until": "2016-12-08T15:43:00"
     }
   }
 

@@ -3,38 +3,77 @@ from ptb.models import Client
 from ptb.models import Property
 from ptb.models import Booking
 
+# FEATURE AND TEMPLATE TESTS
+# ...
 
-# UNIT TESTS
+# VIEW UNIT TESTS
 class ptbViewsTestCase(TestCase):
     fixtures = ['dummy_data.json']
 
-    def test_index(self):
+    def test_home(self):
         response = self.client.get('/ptb/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'ptb/home.html')
-        self.assertContains(response, '<h1> Pass The Booking </h1>')
 
-    def test_clients_list(self):
+    def test_clients_index(self):
         response = self.client.get('/ptb/clients/')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'ptb/clients.html')
-        self.assertContains(response, 'Clients')
-        self.assertContains(response, 'John')
-        self.assertContains(response, 'Lennon')
-        self.assertContains(response, 'john@email.com')
-        self.assertContains(response, 'View Properties')
-        self.assertContains(response, 'Edit Info')
+        self.assertTemplateUsed(response, 'ptb/client_index.html')
 
+    def test_single_client_info(self):
+        response = self.client.get('/ptb/clients/2/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/client.html')
 
     def test_clients_properties(self):
-        response = self.client.get('/ptb/clients/3/properties')
+        response = self.client.get('/ptb/clients/3/properties/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'ptb/client_properties.html')
-        self.assertContains(response, "Properties of")
-        self.assertContains(response, "Address:")
 
+    def test_property_index(self):
+        response = self.client.get('/ptb/properties/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/property_index.html')
 
-# Model Tests
+    def test_single_property_info(self):
+        response = self.client.get('/ptb/properties/1/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/property.html')
+
+    def test_booking_index(self):
+        response = self.client.get('/ptb/bookings/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/booking_index.html')
+
+    def test_single_booking_info(self):
+        response = self.client.get('/ptb/bookings/2/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'ptb/booking.html')
+
+class ptbViewsNoData(TestCase):
+
+    def test_clients_properties_no_data(self):
+        Client.objects.create(first_name="David",last_name="Bowie",email="bowie@email.com")
+        response = self.client.get('/ptb/clients/1/properties/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "This client has no properties yet")
+
+    def test_clients_no_data(self):
+        response = self.client.get('/ptb/clients/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There are no clients yet")
+
+    def test_properties_no_data(self):
+        response = self.client.get('/ptb/properties/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There are no properties listed yet")
+
+    def test_bookings_no_data(self):
+        response = self.client.get('/ptb/bookings/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There are no bookings yet")
+
+# MODEL UNIT TESTS
 class ptbClientModelTestCase(TestCase):
 
     def create_client(self, first_name="jack", last_name="henderson", email="jack@email.com"):
@@ -47,9 +86,9 @@ class ptbClientModelTestCase(TestCase):
 
 class ptbPropertyModelTestCase(TestCase):
 
-    def create_property(self,address="street"):
+    def create_property(self,address="street", pet_friendly=True, bathrooms=2, bedrooms=3):
         c = ptbClientModelTestCase().create_client()
-        return Property.objects.create(owner=c,address=address)
+        return Property.objects.create(owner=c,address=address, pet_friendly = pet_friendly, bathrooms=bathrooms, bedrooms=3)
 
     def test_property_creation(self):
         p = self.create_property()

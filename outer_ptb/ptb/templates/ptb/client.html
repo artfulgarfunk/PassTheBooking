@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    Client
+{% extends "./base.html" %}
+
+{% block content %}
+  {{ client.first_name }} {{ client.last_name }}
     <form action="{% url 'ptb:properties' client.id %}" method="post"> {% csrf_token %}
       <input type="submit" value="View Properties" />
     </form>
-  </body>
-</html>
+{% endblock %}

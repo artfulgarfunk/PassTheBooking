@@ -1,27 +1,18 @@
+{% extends "./base.html" %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    {{ client.first_name }} {{ client.last_name }} <br>
+{% block content %}
+  {{ client.first_name }} {{ client.last_name }} <br>
 
-    {% if not properties %}
-      <p> This client has no properties </p>
-    {% else %}
-      {% for property in properties %}
-        <div>
-          <p> Address: {{ property.address }} </p>
-          <p> Details </p>
-        </div>
-      {% endfor %}
-    {%endif %}
-
-    <form action="{% url 'ptb:property_index' %}" method="post"> {% csrf_token %}
-      <input type="submit" value="View All Properties" />
-    </form>
-
-  </body>
-</html>
+  {% if not properties %}
+    <p> This client has no properties yet</p>
+  {% else %}
+    {% for property in properties %}
+      <div>
+        <p> Address: {{ property.address }} </p>
+        <form action="{% url 'ptb:property_info' property.id %}" method="post"> {% csrf_token %}
+          <input type="submit" value="More Info on this property" />
+        </form>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

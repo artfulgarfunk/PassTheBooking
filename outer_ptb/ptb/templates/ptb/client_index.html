@@ -1,14 +1,11 @@
+{% extends "./base.html" %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Clients</title>
-  </head>
-  <body>
-    <h1> Clients <h1>
-
-    {% for client in clients %}
+{% block content %}
+{% if not clients %}
+  <p> There are no clients yet </p>
+{% else %}
+<h1> Clients <h1>
+  {% for client in clients %}
     {{ client.id }}:
     {{ client.first_name }}
     {{ client.last_name }}
@@ -19,8 +16,6 @@
       <form action="{% url 'ptb:properties' client.id %}" method="post"> {% csrf_token %}
         <input type="submit" value="View Properties" />
       </form>
-    {% endfor %}
-
-
-  </body>
-</html>
+  {% endfor %}
+{% endif %}
+{% endblock %}

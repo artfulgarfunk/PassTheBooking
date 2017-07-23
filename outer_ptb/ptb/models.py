@@ -12,6 +12,9 @@ class Client(models.Model):
 class Property(models.Model):
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
     address = models.CharField(max_length=200)
+    pet_friendly = models.BooleanField(blank=False)
+    bathrooms = models.PositiveIntegerField(blank=False)
+    bedrooms = models.PositiveIntegerField(blank=False)
 
     def __str__(self):
         return self.address

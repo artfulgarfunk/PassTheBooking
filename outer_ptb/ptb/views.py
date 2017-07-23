@@ -15,7 +15,7 @@ def client_info(request, num):
     client = Client.objects.get(id=num)
     return render(request, 'ptb/client.html', { 'client': client } )
 
-def client_property(request, num):
+def client_properties(request, num):
     client = Client.objects.get(id=num)
     properties = Property.objects.filter(owner=client)
     return render(request, 'ptb/client_properties.html', { 'properties': properties, 'client': client})
@@ -26,4 +26,13 @@ def property_index(request):
 
 def property_info(request, num):
     prop = Property.objects.get(id=num)
-    return render(request, 'ptb/property.html', { 'property': prop } )
+    bookings = Booking.objects.filter(prop=prop)
+    return render(request, 'ptb/property.html', { 'property': prop, 'bookings': bookings } )
+
+def booking_info(request, num):
+    booking = Booking.objects.get(id=num)
+    return render(request, 'ptb/booking.html', { 'booking': booking})
+
+def booking_index(request):
+    bookings = Booking.objects.all()
+    return render(request, 'ptb/booking_index.html', { 'bookings': bookings })

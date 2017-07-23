@@ -1,14 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Property</title>
-  </head>
-  <body>
-    Property
-    {{ property }}
-    <form action="{% url 'ptb:client_info' property.owner.id %}" method="post"> {% csrf_token %}
-      <input type="submit" value="View Client" />
-    </form>
-  </body>
-</html>
+{% extends "./base.html" %}
+
+{% block content %}
+
+Property <br>
+Address: {{ property.address }} <br>
+Bathrooms: {{ property.bathrooms }} <br>
+Bedrooms: {{ property.bedrooms }} <br>
+Pet Friendly: {% if property.pet_friendly %}
+                Yes
+              {% else %}
+                No
+              {% endif %}
+
+<br> <br>
+  {% if bookings %}
+    {% for booking in bookings %}
+      {{ booking.first_name }}
+      {{ booking.last_name }} has booked this property from
+      {{ booking.date_from }} until
+      {{ booking.date_until }}
+      Contact: {{ booking.email }}
+      <br> <br>
+    {% endfor %}
+  {% else %}
+    This property has not been booked yet
+  {% endif %}
+  <form action="{% url 'ptb:client_info' property.owner.id %}" method="post"> {% csrf_token %}
+    <input type="submit" value="View Client" />
+  </form>
+{% endblock %}

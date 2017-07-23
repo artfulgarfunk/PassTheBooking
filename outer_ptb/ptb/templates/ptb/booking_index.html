@@ -1,0 +1,26 @@
+{% extends "./base.html" %}
+
+{% block content %}
+{% if not bookings %}
+<p> There are no bookings yet </p>
+{% else %}
+  {% for booking in bookings %}
+  {{ booking.id }}:
+  {{ booking.property }}
+  {{ booking.first_name }}
+  {{ booking.last_name }}
+  {{ booking.email }}
+  {{ booking.date_from }}
+  {{ booking.date_until }}
+    <form action="{% url 'ptb:client_info' booking.prop.owner.id %}" method="post"> {% csrf_token %}
+      <input type="submit" value="View Client" />
+    </form>
+    <form action="{% url 'ptb:property_info' booking.prop.id %}" method="post"> {% csrf_token %}
+      <input type="submit" value="View Property" />
+    </form>
+    <br>
+    <br>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}

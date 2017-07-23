@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} Pass The Booking {% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+    <br>
+    <br>
+    {% block options %}
+      <form action="{% url 'ptb:property_index' %}" method="post"> {% csrf_token %}
+        <input type="submit" value="View All Properties" />
+      </form>
+      <form action="{% url 'ptb:client_index' %}" method="post"> {% csrf_token %}
+        <input type="submit" value="View All Clients" />
+      </form>
+      <form action="{% url 'ptb:booking_index' %}" method="post"> {% csrf_token %}
+        <input type="submit" value="View All Bookings" />
+      </form>
+    {% endblock %}
+  </body>
+</html>
