@@ -21,6 +21,16 @@ Testing: I used Django's default test library, there are unit tests for models, 
 
 Data: I used Django's fixtures function which was simple and worked well for my purposes although it can be problematic when scaling up.
 
+# Next Steps
+- Fully fledged feature tests
+- Display most popular properties on a clients info page
+- Links to AirBNB properties
+- Login/logout: display which user edits a database entry
+- Image upload
+- Update database from SQLite
+- Database validations
+- Styling
+
 # Built With
 - Python
 - Django
@@ -47,6 +57,9 @@ Data:
 - Install [Python](https://www.python.org/downloads/)
 - Install [Django](https://docs.djangoproject.com/en/1.11/topics/install/)
 - Clone this repo
+- Change directory to outer_ptb
+- To make db migrations run `python manage.py makemigrations ptb`
+- To make db migrations run `python manage.py migrate ptb`
 - To load data run `python manage.py loaddata data.json`
 - To run server run `python manage.py runserver`
 - To run test suits run `python manage.py test`
