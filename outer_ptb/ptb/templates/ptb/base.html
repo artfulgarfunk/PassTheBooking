@@ -10,13 +10,13 @@
     <br>
     <br>
     {% block options %}
-      <form action="{% url 'ptb:property_index' %}" method="post"> {% csrf_token %}
+      <form action="{% url 'ptb:property_index' %}" method="get"> {% csrf_token %}
         <input type="submit" value="View All Properties" />
       </form>
-      <form action="{% url 'ptb:client_index' %}" method="post"> {% csrf_token %}
+      <form action="{% url 'ptb:client_index' %}" method="get"> {% csrf_token %}
         <input type="submit" value="View All Clients" />
       </form>
-      <form action="{% url 'ptb:booking_index' %}" method="post"> {% csrf_token %}
+      <form action="{% url 'ptb:booking_index' %}" method="get"> {% csrf_token %}
         <input type="submit" value="View All Bookings" />
       </form>
     {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-
+{% block title %} Property No.{{ property.id }} {% endblock %}
 {% block content %}
 
 Property <br>
@@ -11,21 +11,26 @@ Pet Friendly: {% if property.pet_friendly %}
               {% else %}
                 No
               {% endif %}
+              <form action="{% url 'ptb:property_edit' property.id %}" method="get"> {% csrf_token %}
+                <input type="submit" value="Edit" />
+              </form> <br>
+              
+              <form action="{% url 'ptb:client_info' property.owner.id %}" method="get"> {% csrf_token %}
+                <input type="submit" value="Client Details" />
+              </form>
 
 <br> <br>
   {% if bookings %}
     {% for booking in bookings %}
-      {{ booking.first_name }}
-      {{ booking.last_name }} has booked this property from
+      Booked from
       {{ booking.date_from }} until
       {{ booking.date_until }}
-      Contact: {{ booking.email }}
+      <form action="{% url 'ptb:booking_info' booking.id %}" method="get"> {% csrf_token %}
+        <input type="submit" value="Booking Details" />
+      </form>
       <br> <br>
     {% endfor %}
   {% else %}
     This property has not been booked yet
   {% endif %}
-  <form action="{% url 'ptb:client_info' property.owner.id %}" method="post"> {% csrf_token %}
-    <input type="submit" value="View Client" />
-  </form>
 {% endblock %}

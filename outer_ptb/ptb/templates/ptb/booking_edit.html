@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% block title %} Edit Booking {% endblock %}
+{% block content %}
+{% if edit == True %}
+  Edited! <br>
+  {{ booking.first_name }}
+  {{ booking.last_name }}
+  {{ booking.email }}
+  {{ booking.date_from }}
+  {{ booking.date_until }}
+{% else %}
+  <form method="POST">  {% csrf_token %}
+    {{ form }}
+    <button type="submit"> save </button>
+  </form>
+{% endif %}
+{% endblock %}

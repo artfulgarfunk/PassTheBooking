@@ -1,5 +1,5 @@
 {% extends "./base.html" %}
-
+{% block title %} Properties {% endblock %}
 {% block content %}
 <h1> All Properties </h1>
   {% if not properties %}
@@ -9,7 +9,7 @@
       <div>
         <p> Address: {{ property.address }} </p>
         <p> Client: {{ property.owner }} </p>
-        <form action="{% url 'ptb:property_info' property.id %}" method="post"> {% csrf_token %}
+        <form action="{% url 'ptb:property_info' property.id %}" method="get"> {% csrf_token %}
           <input type="submit" value="View Property" />
         </form>
       </div>

@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% block title %} Edit {% endblock %}
+
+{% block content %}
+{% if edit == True %}
+  Edited Succesfully. <br>
+  New Details:
+  {{ client.first_name }}
+  {{ client.last_name }}
+  {{ client.email }}
+{% else %}
+  <form method="POST">  {% csrf_token %}
+    {{ form }}
+    <button type="submit"> save </button>
+  </form>
+{% endif %}
+{% endblock %}

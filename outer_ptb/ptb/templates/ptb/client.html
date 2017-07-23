@@ -1,8 +1,12 @@
 {% extends "./base.html" %}
+{% block title %} {{ client.first_name }} {{ client.last_name }} {% endblock %}
 
 {% block content %}
-  {{ client.first_name }} {{ client.last_name }}
-    <form action="{% url 'ptb:properties' client.id %}" method="post"> {% csrf_token %}
+  {{ client.first_name }} {{ client.last_name }} {{ client.email }}
+  <form action="{% url 'ptb:client_edit' client.id %}" method="get"> {% csrf_token %}
+    <input type="submit" value="Edit Information" />
+  </form>
+    <form action="{% url 'ptb:properties' client.id %}" method="get"> {% csrf_token %}
       <input type="submit" value="View Properties" />
     </form>
 {% endblock %}

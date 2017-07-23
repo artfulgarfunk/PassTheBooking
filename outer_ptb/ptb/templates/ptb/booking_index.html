@@ -1,4 +1,5 @@
 {% extends "./base.html" %}
+{% block title %} Bookings {% endblock %}
 
 {% block content %}
 {% if not bookings %}
@@ -12,11 +13,14 @@
   {{ booking.email }}
   {{ booking.date_from }}
   {{ booking.date_until }}
-    <form action="{% url 'ptb:client_info' booking.prop.owner.id %}" method="post"> {% csrf_token %}
+    <form action="{% url 'ptb:client_info' booking.prop.owner.id %}" method="get"> {% csrf_token %}
       <input type="submit" value="View Client" />
     </form>
-    <form action="{% url 'ptb:property_info' booking.prop.id %}" method="post"> {% csrf_token %}
+    <form action="{% url 'ptb:property_info' booking.prop.id %}" method="get"> {% csrf_token %}
       <input type="submit" value="View Property" />
+    </form>
+    <form action="{% url 'ptb:booking_info' booking.id %}" method="get"> {% csrf_token %}
+      <input type="submit" value="View Booking" />
     </form>
     <br>
     <br>
