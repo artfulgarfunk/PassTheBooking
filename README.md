@@ -8,7 +8,7 @@ I opted for a simple design with a home page and three pages for each model.
 
 Index: Displays all database entries for that model, with a links to individual pages for all the information on each entry.
 
-Info page: Displays information for that specific entry, with an option to edit.
+Info: Displays information for that specific entry, with an option to edit.
 
 Edit: Contains a form to edit the entry. I used Django's generic Form function to generate forms for each model for this page.
 The home page simply provides links to each models index page, which are displayed on every page through the use of a base.html which all other templates extend. There's also a distinct url for displaying properties associated with a particular client.
@@ -17,9 +17,9 @@ I used Django's inbuilt fixtures feature to generate data for testing and using 
 I tried to keep the views as straightforward as possible, with minimal logic, simply passing data to the necessary templates.  
 Separation of concerns was central: although there is little data currently on each page, all the parts are clear and separate which would make it ideal to build upon.
 
-Testing, I used Django's default test library, there are unit tests for models, templates and views though no comprehensive feature and user tests. In future I would use perhaps Selenium to simulate a browser and run through the user experience on the app.
+Testing: I used Django's default test library, there are unit tests for models, templates and views though no comprehensive feature and user tests. In future I would use perhaps Selenium to simulate a browser and run through the user experience on the app.
 
-Data, I used Django's fixtures function which was simple and worked well for my purposes although it can be problematic when scaling up.
+Data: I used Django's fixtures function which was simple and worked well for my purposes although it can be problematic when scaling up.
 
 # Built With
 - Python
@@ -44,3 +44,9 @@ Data:
 - A database such as PostgreSQL or SQLite
 
 # Instructions
+- Install [Python](https://www.python.org/downloads/)
+- Install [Django](https://docs.djangoproject.com/en/1.11/topics/install/)
+- Clone this repo
+- To load data run `python manage.py loaddata data.json`
+- To run server run `python manage.py runserver`
+- To run test suits run `python manage.py test`
