@@ -2,32 +2,29 @@
 {% block title %} Property No.{{ property.id }} {% endblock %}
 {% block content %}
 
-Property <br>
-Address: {{ property.address }} <br>
-Bathrooms: {{ property.bathrooms }} <br>
-Bedrooms: {{ property.bedrooms }} <br>
-Pet Friendly: {% if property.pet_friendly %}
-                Yes
-              {% else %}
-                No
-              {% endif %}
+<h1> Property No. {{ property.id }}</h1> <br>
+<p> Address: {{ property.address }} <br>
+    Bathrooms: {{ property.bathrooms }} <br>
+    Bedrooms: {{ property.bedrooms }} <br>
+    Pet Friendly: {% if property.pet_friendly %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %} </p>
               <form action="{% url 'ptb:property_edit' property.id %}" method="get"> {% csrf_token %}
-                <input type="submit" value="Edit" />
+                <button type="submit" class="btn btn-success btn-sm"/> Edit </button>
               </form> <br>
-              
               <form action="{% url 'ptb:client_info' property.owner.id %}" method="get"> {% csrf_token %}
-                <input type="submit" value="Client Details" />
+                <button type="submite" class="btn btn-success"> Client Details </button>
               </form>
-
 <br> <br>
   {% if bookings %}
     {% for booking in bookings %}
-      Booked from
+      <p> Booked from
       {{ booking.date_from }} until
-      {{ booking.date_until }}
+      {{ booking.date_until }} </p> 
       <form action="{% url 'ptb:booking_info' booking.id %}" method="get"> {% csrf_token %}
-        <input type="submit" value="Booking Details" />
-      </form>
+<button type="submit" class="btn btn-success"> Booking Information </button> </form>
       <br> <br>
     {% endfor %}
   {% else %}

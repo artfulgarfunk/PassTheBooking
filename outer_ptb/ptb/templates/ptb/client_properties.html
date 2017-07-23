@@ -2,16 +2,17 @@
 {% block title %} Client Properties {% endblock %}
 
 {% block content %}
-  {{ client.first_name }} {{ client.last_name }} <br>
+  <h2> {{ client.first_name }} {{ client.last_name }} </h2> <br>
 
   {% if not properties %}
-    <p> This client has no properties yet</p>
+    <h2> This client has no properties yet</h2>
   {% else %}
+  <h2> Properties </h2>
     {% for property in properties %}
       <div>
         <p> Address: {{ property.address }} </p>
         <form action="{% url 'ptb:property_info' property.id %}" method="get"> {% csrf_token %}
-          <input type="submit" value="More Info on this property" />
+          <button type="submit" class="btn btn-md btn-success"> Property Details </button>
         </form>
       </div>
     {% endfor %}

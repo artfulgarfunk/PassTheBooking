@@ -2,16 +2,19 @@
 {% block title %} Edit Booking {% endblock %}
 {% block content %}
 {% if edit == True %}
-  Edited! <br>
-  {{ booking.first_name }}
-  {{ booking.last_name }}
-  {{ booking.email }}
-  {{ booking.date_from }}
-  {{ booking.date_until }}
+  <h2 class='subtitle'> Edited! </h2> <br>
+  <p> Name: {{ booking.first_name }} {{ booking.last_name }} </p> <br>
+  <p> Contact: {{ booking.email }} </p> <br>
+  <p> From: {{ booking.date_from }} </p> <br>
+  <p> To: {{ booking.date_until }}</p> <br>
 {% else %}
-  <form method="POST">  {% csrf_token %}
-    {{ form }}
-    <button type="submit"> save </button>
-  </form>
+  <p>
+    <form class="form" method="POST">  {% csrf_token %}
+      <div class="form-group"> 
+        {{ form }}
+        <button type="submit" class="btn btn-success btn-sm"> Save </button>
+      </div>  
+    </form>
+  </p>
 {% endif %}
 {% endblock %}

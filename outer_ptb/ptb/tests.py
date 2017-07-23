@@ -1,14 +1,116 @@
 from django.test import TestCase
-from ptb.models import Client
-from ptb.models import Property
-from ptb.models import Booking
+from ptb.models import Client, Property, Booking
+from ptb.forms import ClientForm, PropertyForm, BookingForm
 
-# FEATURE AND TEMPLATE TESTS
-# ...
+# TEMPLATE UNIT TESTS
+class ptbTemplateFeatureTests(TestCase):
+
+    def create_client(self, first_name="jack", last_name="henderson", email="jack@email.com"):
+        return Client.objects.create(first_name = first_name, last_name = last_name, email = email)
+
+    def create_property(self,address="street", pet_friendly=True, bathrooms=2, bedrooms=3):
+        c = self.create_client()
+        return Property.objects.create(owner=c,address=address, pet_friendly = pet_friendly, bathrooms=bathrooms, bedrooms=3)
+
+    def create_booking(self, first_name="jim", last_name="morrison", email="jim@email.com", date_from = "2014-12-08", date_until = "2016-12-08"):
+        p = self.create_property()
+        return Booking.objects.create(prop=p, first_name = first_name, last_name = last_name, email = email, date_from = date_from, date_until = date_until)
+
+    def test_clients_index(self):
+        c = self.create_client()
+        response = self.client.get('/ptb/clients/')
+        self.assertContains(response, c.first_name)
+        self.assertContains(response, c.last_name)
+        self.assertContains(response, c.email)
+        self.assertContains(response, c.id)
+
+    def test_client_info(self):
+        c = self.create_client()
+        response = self.client.get('/ptb/clients/1/')
+        self.assertContains(response, c.first_name)
+        self.assertContains(response, c.last_name)
+        self.assertContains(response, c.email)
+        self.assertContains(response, c.id)
+        self.assertContains(response, "Edit")
+        self.assertContains(response, "Client Properties")
+
+    def test_client_edit(self):
+        c = self.create_client()
+        response = self.client.get('/ptb/clients/1/edit/')
+        self.assertContains(response, "First name:")
+        self.assertContains(response, "Last name:")
+        self.assertContains(response, "Email:")
+        self.assertContains(response, "Save")
+
+    def test_clients_properties(self):
+        p = self.create_property()
+        response = self.client.get('/ptb/clients/1/properties/')
+        self.assertContains(response, p.owner.first_name)
+        self.assertContains(response, p.owner.last_name)
+        self.assertContains(response, p.address)
+        self.assertContains(response, "Property Details")
+
+    def test_property_index(self):
+        p = self.create_property()
+        response = self.client.get('/ptb/properties/')
+        self.assertContains(response, p.address)
+        self.assertContains(response, p.owner.first_name)
+        self.assertContains(response, p.owner.last_name)
+        self.assertContains(response, "Property Details")
+        self.assertContains(response, "Client Details")
+
+    def test_property_info(self):
+        p = self.create_property()
+        response = self.client.get('/ptb/properties/1/')
+        self.assertContains(response, p.address)
+        self.assertContains(response, p.bathrooms)
+        self.assertContains(response, p.bedrooms)
+        self.assertContains(response, "Yes")
+        self.assertContains(response, "Edit")
+        self.assertContains(response, "Client Details")
+
+    def test_property_edit(self):
+        p = self.create_property()
+        response = self.client.get('/ptb/properties/1/edit/')
+        self.assertContains(response, "Address:")
+        self.assertContains(response, "Pet friendly:")
+        self.assertContains(response, "Bathrooms:")
+        self.assertContains(response, "Bedrooms:")
+        self.assertContains(response, "Save")
+
+    def test_booking_index(self):
+        b = self.create_booking()
+        response = self.client.get('/ptb/bookings/')
+        self.assertContains(response, "Bookings")
+        self.assertContains(response, b.prop.address)
+        self.assertContains(response, "Dec. 8, 2014")
+        self.assertContains(response, "Dec. 8, 2016")
+        self.assertContains(response, "View Booking")
+
+    def test_booking_info(self):
+        b = self.create_booking()
+        response = self.client.get('/ptb/bookings/1/')
+        self.assertContains(response, b.prop.address)
+        self.assertContains(response, b.first_name)
+        self.assertContains(response, b.last_name)
+        self.assertContains(response, b.email)
+        self.assertContains(response, "Edit")
+        self.assertContains(response, "View Property")
+        self.assertContains(response, "View Client")
+
+    def test_booking_edit(self):
+        b = self.create_booking()
+        response = self.client.get('/ptb/bookings/1/edit/')
+        self.assertContains(response, "First name:")
+        self.assertContains(response, "Last name:")
+        self.assertContains(response, "Date from:")
+        self.assertContains(response, "Date until:")
+        self.assertContains(response, "Save")
+
 
 # VIEW UNIT TESTS
 class ptbViewsTestCase(TestCase):
-    fixtures = ['dummy_data.json']
+    fixtures = ['data.json']
 
     def test_home(self):
         response = self.client.get('/ptb/')
@@ -98,7 +200,7 @@ class ptbPropertyModelTestCase(TestCase):
 
 class ptbBookingModelTestCase(TestCase):
 
-    def create_booking(self, first_name="jim", last_name="morrison", email="jim@email.com", date_from = "2014-12-08T15:43:00", date_until = "2014-12-08T15:43:00"):
+    def create_booking(self, first_name="jim", last_name="morrison", email="jim@email.com", date_from = "2014-12-08", date_until = "2014-12-08"):
         p = ptbPropertyModelTestCase().create_property()
         return Booking.objects.create(prop=p, first_name = first_name, last_name = last_name, email = email, date_from = date_from, date_until = date_until)
 

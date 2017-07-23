@@ -1,5 +1,53 @@
 [
   {
+    "model": "ptb.booking",
+    "pk":1,
+    "fields": {
+      "prop":1,
+      "first_name":"Peter",
+      "last_name":"Griffin",
+      "email": "peter@email.com",
+      "date_from": "2014-12-08",
+      "date_until": "2014-12-20"
+    }
+  },
+  {
+    "model": "ptb.booking",
+    "pk":2,
+    "fields": {
+      "prop":1,
+      "first_name":"Lois",
+      "last_name":"Lane",
+      "email": "lois@email.com",
+      "date_from": "2016-12-08",
+      "date_until": "2016-12-10"
+    }
+  },
+  {
+    "model": "ptb.booking",
+    "pk":3,
+    "fields": {
+      "prop":1,
+      "first_name":"Jane",
+      "last_name":"Jones",
+      "email": "jane@email.com",
+      "date_from": "2015-12-10",
+      "date_until": "2015-12-11"
+    }
+  },
+  {
+    "model": "ptb.booking",
+    "pk":4,
+    "fields": {
+      "prop":1,
+      "first_name":"Jim",
+      "last_name":"Jefferies",
+      "email": "jim@email.com",
+      "date_from": "2016-11-08",
+      "date_until": "2016-11-10"
+    }
+  },
+  {
     "model": "ptb.client",
     "pk": 1,
     "fields": {
@@ -40,7 +88,7 @@
     "pk":1,
     "fields": {
       "owner":1,
-      "address":"barnes st",
+      "address":"Barnes st",
       "pet_friendly":true,
       "bathrooms":2,
       "bedrooms":3
@@ -51,7 +99,7 @@
     "pk":2,
     "fields": {
       "owner":2,
-      "address":"iliad st",
+      "address":"Iliad st",
       "pet_friendly":true,
       "bathrooms":2,
       "bedrooms":3
@@ -62,7 +110,7 @@
     "pk":3,
     "fields": {
       "owner":2,
-      "address":"odyseuss st",
+      "address":"Odyseuss st",
       "pet_friendly":true,
       "bathrooms":2,
       "bedrooms":3
@@ -73,36 +121,10 @@
     "pk":4,
     "fields": {
       "owner":3,
-      "address":"homer st",
+      "address":"Homer st",
       "pet_friendly":true,
       "bathrooms":2,
       "bedrooms":3
     }
-  },
-
-  {
-    "model": "ptb.booking",
-    "pk":1,
-    "fields": {
-      "prop":1,
-      "first_name":"Peter",
-      "last_name":"Griffin",
-      "email": "peter@email.com",
-      "date_from": "2014-12-08T15:43:00",
-      "date_until": "2014-12-08T15:43:00"
-    }
-  },
-  {
-    "model": "ptb.booking",
-    "pk":2,
-    "fields": {
-      "prop":1,
-      "first_name":"Lois",
-      "last_name":"Lane",
-      "email": "lois@email.com",
-      "date_from": "2016-12-08T15:43:00",
-      "date_until": "2016-12-08T15:43:00"
-    }
   }
-
 ]

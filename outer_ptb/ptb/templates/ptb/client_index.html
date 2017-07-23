@@ -5,18 +5,24 @@
 {% if not clients %}
   <p> There are no clients yet </p>
 {% else %}
-<h1> Clients <h1>
+<h1> Clients </h1>
   {% for client in clients %}
-    {{ client.id }}:
-    {{ client.first_name }}
-    {{ client.last_name }}
-    {{ client.email }} <br> <br>
-      <form action="{% url 'ptb:client_info' client.id %}" method="get"> {% csrf_token %}
-        <input type="submit" value="Client Information" />
-      </form>
-      <form action="{% url 'ptb:properties' client.id %}" method="get"> {% csrf_token %}
-        <input type="submit" value="View Properties" />
-      </form>
+  <div class="row">
+    <div class="col-md-6"> <p>
+        {{ client.first_name }}
+        {{ client.last_name }},
+        {{ client.email }},
+         id: {{ client.id }}</p>
+      </div>       
+      <div class="col-md-6">
+        <form action="{% url 'ptb:client_info' client.id %}" method="get"> {% csrf_token %}
+          <button type="submit" class="btn btn-md btn-success"> Client Details </button>
+        </form>
+        <form action="{% url 'ptb:properties' client.id %}" method="get"> {% csrf_token %}
+          <button type="submit" class="btn btn-md btn-success"> Client Properties </button>
+        </form>
+      </div>
+    </div>
   {% endfor %}
 {% endif %}
 {% endblock %}

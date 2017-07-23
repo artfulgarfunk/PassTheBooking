@@ -2,8 +2,9 @@
 {% block title %} Edit {% endblock %}
 {% block content %}
 {% if edit == True %}
-  Edited Succesfully. <br>
-  New Details: <br>
+  <h2> Edited Successfully </h2> <br>
+  <p>
+  New Details <br>
   Address: {{ property.address }} <br>
   Bathrooms: {{ property.bathrooms }} <br>
   Bedrooms: {{ property.bedrooms }} <br>
@@ -11,11 +12,11 @@
                   Yes
                 {% else %}
                   No
-                {% endif %}
+                {% endif %} </p>
 {% else %}
   <form method="POST">  {% csrf_token %}
     {{ form }}
-    <button type="submit"> save </button>
+    <button type="submit" class="btn btn-md btn-success"> Save </button>
   </form>
 {% endif %}
 {% endblock %}

@@ -6,13 +6,20 @@
     <p> There are no properties listed yet </p>
   {% else %}
     {% for property in properties %}
-      <div>
+    <div class="row">
+      <div class="col-md-6">       
         <p> Address: {{ property.address }} </p>
-        <p> Client: {{ property.owner }} </p>
+        <p> Client: {{ property.owner }} {{ property.owner.last_name}}</p>
+      </div>
+      <div class="col-md-6">
         <form action="{% url 'ptb:property_info' property.id %}" method="get"> {% csrf_token %}
-          <input type="submit" value="View Property" />
+          <button type="submit" class="btn btn-success btn-sm"/> Property Details </button>
+        </form>
+        <form action="{% url 'ptb:client_info' property.owner.id %}" method="get"> {% csrf_token %}
+          <button type="submit" class="btn btn-success btn-sm"/> Client Details </button>
         </form>
       </div>
+    </div>
     {% endfor %}
     {%endif %}
 {% endblock %}

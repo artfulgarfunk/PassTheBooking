@@ -2,11 +2,12 @@
 {% block title %} {{ client.first_name }} {{ client.last_name }} {% endblock %}
 
 {% block content %}
-  {{ client.first_name }} {{ client.last_name }} {{ client.email }}
+  <p> Name: {{ client.first_name }} {{ client.last_name }} <br>
+      Email: {{ client.email }} </p> 
   <form action="{% url 'ptb:client_edit' client.id %}" method="get"> {% csrf_token %}
-    <input type="submit" value="Edit Information" />
+    <button type="submit" class="btn btn-success"> Edit </button>
   </form>
     <form action="{% url 'ptb:properties' client.id %}" method="get"> {% csrf_token %}
-      <input type="submit" value="View Properties" />
+      <button type="submit" class="btn btn-success"> Client Properties </button>
     </form>
 {% endblock %}

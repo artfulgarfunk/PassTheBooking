@@ -13,5 +13,4 @@ urlpatterns = [
     url(r'^bookings/(?P<num>[0-9]+)/$', views.booking_info, name='booking_info'),
     url(r'^bookings/$', views.booking_index, name='booking_index'),
     url(r'^bookings/(?P<num>[0-9]+)/edit/$', views.booking_edit, name='booking_edit'),
-
 ]

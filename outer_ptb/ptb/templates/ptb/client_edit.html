@@ -3,15 +3,17 @@
 
 {% block content %}
 {% if edit == True %}
-  Edited Succesfully. <br>
-  New Details:
-  {{ client.first_name }}
-  {{ client.last_name }}
-  {{ client.email }}
+<h2> Edited Succesfully <h2> <br>
+  <p>
+  New Details <br>
+  Name: {{ client.first_name }}
+  {{ client.last_name }} <br>
+  Email: {{ client.email }}
+</p>
 {% else %}
   <form method="POST">  {% csrf_token %}
     {{ form }}
-    <button type="submit"> save </button>
+    <button type="submit" class="btn btn-md btn-success"> Save </button>
   </form>
 {% endif %}
 {% endblock %}

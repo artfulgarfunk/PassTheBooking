@@ -2,13 +2,27 @@
 {% block title %} Booking No.{{ booking.id }} {% endblock %}
 {% block content %}
 
-  Booking
-  {{ booking.id }}:
-  {{ booking.property }}
-  {{ booking.first_name }}
-  {{ booking.last_name }}
-  {{ booking.email }}
-  {{ booking.date_from }}
-  {{ booking.date_until }}
+<h1> Booking no. {{ booking.id }}</h1>
+<p>
+  Address: {{ booking.prop }} <br>
+  Name: {{ booking.first_name }}
+  {{ booking.last_name }} <br>
+  Contact: {{ booking.email }} <br>
+  From: {{ booking.date_from }} <br>
+  To: {{ booking.date_until }} <br>
+</p>
+
+<form action="{% url 'ptb:booking_edit' booking.id %}" method="post"> {% csrf_token %}
+  <button type="submit" class="btn btn-success btn-sm"/>
+  Edit </button>
+</form> <br> 
+<form action="{% url 'ptb:property_info' booking.prop.id %}" method="get"> {% csrf_token %}
+  <button type="submit" class="btn btn-success btn-sm"/>
+  View Property </button>
+</form> <br>
+<form action="{% url 'ptb:client_info' booking.prop.owner.id %}" method="get"> {% csrf_token %}
+  <button type="submit" class="btn btn-success btn-sm"/>
+  View Client </button>
+</form>
 
 {% endblock %}

@@ -5,20 +5,40 @@
     <title>{% block title %} Pass The Booking {% endblock %}</title>
   </head>
   <body>
-    {% block content %}
-    {% endblock %}
-    <br>
-    <br>
-    {% block options %}
-      <form action="{% url 'ptb:property_index' %}" method="get"> {% csrf_token %}
-        <input type="submit" value="View All Properties" />
-      </form>
-      <form action="{% url 'ptb:client_index' %}" method="get"> {% csrf_token %}
-        <input type="submit" value="View All Clients" />
-      </form>
-      <form action="{% url 'ptb:booking_index' %}" method="get"> {% csrf_token %}
-        <input type="submit" value="View All Bookings" />
-      </form>
-    {% endblock %}
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_messages %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ptb/style.css' %}" />
+    <div class="container-fluid">
+      <div class="jumbotron home">
+        {% block content %}
+        {% endblock %}
+        <br>
+        <br>
+        {% block options %}
+        <div class="row">
+          <div class="col-md-4">
+            <form action="{% url 'ptb:property_index' %}" method="get"> {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-lg"/>
+              View All Properties </button>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <form action="{% url 'ptb:client_index' %}" method="get"> {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-lg"/>
+              View All Clients </button>
+            </form>
+          </div>
+          <div class="col-md-4">
+            <form action="{% url 'ptb:booking_index' %}" method="get"> {% csrf_token %}
+              <button type="submit" class="btn btn-primary btn-lg"/>
+              View All Bookings </button>
+            </form>
+          </div>
+        </div>
+        {% endblock %}
+      </div>
+    </div>
   </body>
 </html>
